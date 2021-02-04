@@ -20,7 +20,7 @@
 
   <groupId>org.openconext</groupId>
   <artifactId>mujina</artifactId>
-  <version>7.4.2</version>
+  <version>7.4.2-xl4.1</version>
   <packaging>pom</packaging>
 
   <properties>
@@ -45,9 +45,9 @@
 
 
   <scm>
-    <connection>scm:git:git://github.com/OpenConext/Mujina.git</connection>
-    <developerConnection>scm:git:git@github.com:OpenConext/Mujina.git</developerConnection>
-    <url>scm:git:git@github.com:OpenConext/Mujina.git</url>
+    <connection>scm:git:git://github.com/veselov/Mujina.git</connection>
+    <developerConnection>scm:git:git@github.com:veselov/Mujina.git</developerConnection>
+    <url>scm:git:git@github.com:veselov/Mujina.git</url>
     <tag>HEAD</tag>
   </scm>
 
@@ -147,5 +147,36 @@
       <url>dav:https://build.openconext.org/repository/public/snapshots</url>
     </snapshotRepository>
   </distributionManagement>
+
+
+  <profiles>
+    <profile>
+      <id>sign-release</id>
+      <activation>
+        <property>
+          <name>sign-release</name>
+        </property>
+      </activation>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-gpg-plugin</artifactId>
+            <version>1.6</version>
+            <executions>
+              <execution>
+                <id>sign-artifacts</id>
+                <phase>verify</phase>
+                <goals>
+                  <goal>sign</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
+
 
 </project>
