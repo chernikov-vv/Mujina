@@ -19,6 +19,13 @@ public class MetadataControllerTest extends AbstractIntegrationTest {
   @Test
   public void metadata() {
 
+    given()
+      .header("content-type", "application/json")
+      .body("sls")
+      .put("/api/slsendpoint")
+      .then()
+      .statusCode(SC_OK);
+
     checkMetadata();
 
     given()
